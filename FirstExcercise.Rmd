@@ -1,0 +1,109 @@
+#####DataWrangling Excercise1
+### Load CSV File
+```{r}
+csvdata <- read.csv("refine_original.csv")
+```
+###Clean up brand names
+```{r}
+csvdata$company <- lapply(csvdata$company,tolower)
+```
+###Separate product code and number
+```{r}
+csvdata$product_number <- csvdata$Product.code...number
+csvdata$product_code <- sapply(strsplit(as.character(csvdata$Product.code...number),"-"),"[",1)
+csvdata$product_number <- sapply(strsplit(as.character(csvdata$product_number),"-"),"[",2)
+```
+
+###Add product categories
+```{r}
+createCategory <- function(x){
+  if(x=='p')
+    return("Smartphone")
+  if(x=='v')
+    return("TV")
+  if(x=='x')
+    return("laptop")
+  if(x=='q')
+    return("Tablet")
+} 
+csvdata$product_category <- lapply(csvdata$product_code,createCategory)
+```
+###Add Full Address
+```{r}
+csvdata$full_address <- paste(csvdata$address,csvdata$city,csvdata$country,sep=",")
+```
+
+###Create dummy variables for company and product category
+```{r}
+
+createBinaryValPhilips<- function(x){
+  if(x=="philips")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryValunilever<- function(x){
+  if(x=="unilever")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryValakzo<- function(x){
+  if(x=="akzo")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryValvan_houten<- function(x){
+  if(x=="van_houten")
+    return(1)
+  else{
+    return(0)
+  }
+}
+csvdata$company_philips <- lapply(csvdata$company,createBinaryValPhilips)
+csvdata$company_akzo <- lapply(csvdata$company,createBinaryValakzo)
+csvdata$company_van_houten <- lapply(csvdata$company,createBinaryValvan_houten)
+csvdata$company_unilever <- lapply(csvdata$company,createBinaryValunilever)
+
+product_smartphone, product_tv, product_laptop and product_tablet
+
+
+createBinaryValsmartphone<- function(x){
+  if(tolower(x)=="smartphone")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryValtv<- function(x){
+  if(tolower(x)=="tv")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryVallaptop<- function(x){
+  if(tolower(x)=="laptop")
+    return(1)
+  else{
+    return(0)
+  }
+}
+createBinaryValtablet<- function(x){
+  if(tolower(x)=="tablet")
+    return(1)
+  else{
+    return(0)
+  }
+}
+
+csvdata$product_smartphone <- lapply(csvdata$product_category,createBinaryValsmartphone)
+csvdata$product_tv <- lapply(csvdata$product_category,createBinaryValtv)
+csvdata$product_laptop <- lapply(csvdata$product_category,createBinaryVallaptop)
+csvdata$product_tablet <- lapply(csvdata$product_category,createBinaryValtablet)
+
+```
