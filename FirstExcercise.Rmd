@@ -69,7 +69,7 @@ csvdata$company_akzo <- lapply(csvdata$company,createBinaryValakzo)
 csvdata$company_van_houten <- lapply(csvdata$company,createBinaryValvan_houten)
 csvdata$company_unilever <- lapply(csvdata$company,createBinaryValunilever)
 
-product_smartphone, product_tv, product_laptop and product_tablet
+
 
 
 createBinaryValsmartphone<- function(x){
@@ -105,5 +105,5 @@ csvdata$product_smartphone <- lapply(csvdata$product_category,createBinaryValsma
 csvdata$product_tv <- lapply(csvdata$product_category,createBinaryValtv)
 csvdata$product_laptop <- lapply(csvdata$product_category,createBinaryVallaptop)
 csvdata$product_tablet <- lapply(csvdata$product_category,createBinaryValtablet)
-
+head(csvdata)
 ```
