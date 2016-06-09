@@ -1,0 +1,34 @@
+###Load the data in RStudio
+```{r}
+titanicdata <- read.csv("Excercise2.csv")
+```
+###Port of embarkation
+```{r}
+titanicdata$embarked <- stringr::str_replace_na(titanicdata$embarked)
+titanicdata$embarked <- lapply(titanicdata$embarked,function(x) sub(x = x,"^$","S"))
+```
+
+###Age
+```{r}
+meanAge <- mean(titanicdata$age,na.rm = TRUE)
+titanicdata$age <- stringr::str_replace_na(titanicdata$age,replacement = meanAge)
+```
+
+
+###Lifeboat
+```{r}
+titanicdata$boat <- lapply(titanicdata$boat,function(x) sub(x = x,"^$","None"))
+```
+
+
+###Cabin
+##Does it make sense to fill missing cabin values
+##it doesnt
+##What does a missing value here mean?
+##it doesnt give any specific information
+### Instead its better to create field which tells whether person has a cabin
+```{r}
+titanicdata$has_cabin_number = lapply(titanicdata$cabin,function(x) if(x!='') return(1) else return(0))
+head(titanicdata)
+```
+
