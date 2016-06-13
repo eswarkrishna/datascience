@@ -7,8 +7,8 @@ output: html_document
 #####Capstone Proposal
 
 ###What is the problem you want to solve?
-1) Understand the impact of various facilities provided by government over years
-2) Given the above fields in relation to number of schools in villages predict the literacy rate
+1) Understand the impact of various facilities like Mid day Meal programme[providing food for poor students in afternoon] and sarva shiksha abhayan [providing free uniform and books to poor students] provided by government over years
+2) Given the below fields like  in relation to number of schools in villages predict the literacy rate
 
 ###Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn’t have otherwise?
 1) Education department of states
@@ -17,7 +17,7 @@ output: html_document
 
 ###What data are you going to use for this? How will you acquire this data?
 The data is taken from the www.dise.in/drc.htm
-fields to be studied :- Schools with Playground Facility,Schools with Boundarywall,Schools with Girls' Toilet,Schools with Boys' Toilet,Schools with Drinking Water,Schools with Electricity,Elementary Enrolment by School Category,Drop out ratio, (Government) - Rural,Schools with PTR,Schools with SCR  and their impact on overall literacy rate, SC ST OBC enrollment
+#####fields to be studied :- Schools with Playground Facility,Schools with Boundarywall,Schools with Girls' Toilet,Schools with Boys' Toilet,Schools with Drinking Water,Schools with Electricity,Elementary Enrolment by School Category,Drop out ratio, (Government) - Rural,Schools with PTR,Schools with SCR  and their impact on overall literacy rate, SC ST OBC enrollment
 
 we will take data from 2-3 yrs only and we will use only 5 states data.
 
