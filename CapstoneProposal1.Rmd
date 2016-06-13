@@ -12,13 +12,13 @@ output: html_document
 3) Identify the gaps to be filled in the below mentioned fields to improve the literacy rate in other states and provide suggestions.
 
 ###Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn’t have otherwise?
-1) Education department of states
-2) District Magistrate of court
+1) Education department of states:- they will use our analysis to decide on which areas to increase the spend as such.For example we provide analysis saying that schools in their state doesnt have good facilities like electricity or sanitation. They will work on those areas.
+2) District Magistrate of court:- Based on the analysis provided they will inform the state governments to take immediate actions on certain areas. They will be providing some guidelines on what to be done for increasing enrollment ratio of General public as well as SC/ST/OBC enrollment.
 
 
 ###What data are you going to use for this? How will you acquire this data?
 The data is taken from the www.dise.in/drc.htm
-#fields to be studied :- Schools with Playground Facility,Schools with Boundarywall,Schools with Girls' Toilet,Schools with Boys' Toilet,Schools with Drinking Water,Schools with Electricity,Elementary Enrolment by School Category,Drop out ratio, (Government) - Rural,Schools with PTR,Schools with SCR  and their impact on overall literacy rate, SC ST OBC enrollment
+fields to be studied :- Schools with Playground Facility,Schools with Boundarywall,Schools with Girls' Toilet,Schools with Boys' Toilet,Schools with Drinking Water,Schools with Electricity,Elementary Enrolment by School Category,Drop out ratio, (Government) - Rural,Schools with PTR,Schools with SCR  and their impact on overall literacy rate, SC ST OBC enrollment
 
 we will take data from 2-3 yrs only and we will use only 5 states data.
 
