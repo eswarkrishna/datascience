@@ -1,0 +1,37 @@
+setwd("C:\\Users\\neoistheone\\Documents\\SpringBoard\\LogisticReg")
+polling <- read.csv("PollingData.csv")
+str(polling)
+table(polling$Year)
+summary(polling)
+library(mice)
+simple = polling[c("Rasmussen","SurveyUSA","PropR","DiffCount")]
+summary(simple)
+set.seed(144)
+imputed = complete(mice(simple))
+summary(imputed)
+summary(polling)
+Train = subset(polling,Year==2004 | Year == 2008)
+Test = subset(polling,Year == 2012)
+table(polling$Republican)
+table(sign(Train$Rasmussen))
+table(Train$Republican,sign(Train$Rasmussen))
+str(Train)
+cor(Train)
+cor(Train[c("Rasmussen","SurveyUSA","DiffCount","PropR","Republican")])
+model1 <- glm(Republican ~ PropR, data = Train,family = binomial)
+summary(model1)
+pred1 <- predict(model1,type="response")
+table(Train$Republican,pred1 >=0.5)
+
+model2 <- glm(Republican ~ SurveyUSA + DiffCount, data = Train,family = binomial)
+summary(model2)
+pred2 <- predict(model2,type="response")
+table(Train$Republican,pred2 >=0.5)
+
+# Test Set Predictions
+table(Test$Republican,sign(Test$Rasmussen))
+TestPrediction <- predict(model2,newdata=Test, type="response")
+table(Test$Republican,TestPrediction >= 0.5)
+subset(Test,TestPrediction >=0.5 & Republican ==0)
+
+# Second model is better than 1st because there is one error found here
