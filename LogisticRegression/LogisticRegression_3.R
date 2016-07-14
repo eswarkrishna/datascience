@@ -1,4 +1,4 @@
-setwd("C:\\Users\\neoistheone\\Documents\\SpringBoard\\LogisticReg")
+setwd("C:\\Users\\Documents\\LogisticReg")
 polling <- read.csv("PollingData.csv")
 str(polling)
 table(polling$Year)
