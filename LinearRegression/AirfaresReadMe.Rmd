@@ -1,0 +1,140 @@
+---
+output:
+  word_document:
+    toc: yes
+  pdf_document: default
+  html_document:
+    number_sections: yes
+---
+```{R}
+
+###Load Libraries and csv file
+library(caTools)
+library(lmtest)
+library(sandwich)
+library(corrplot)
+setwd("C:\\Users\\neoistheone\\Documents\\Statistical Analysis2\\Assignment1")
+airfareData <- read.csv("Airfares.csv")
+```{R}
+##### Summary of Data
+```{R}
+str(airfareData)
+```{R}
+##### Cleaning of data
+```{R}
+airfareData$X <- NULL
+airfareData$VACATION <- ifelse(airfareData$VACATION=="Yes",1,0)
+airfareData$SW <- ifelse(airfareData$SW =='Yes',1,0)
+airfareData$SLOT <- ifelse(airfareData$SLOT == "Free",1,0)
+airfareData$GATE <- ifelse(airfareData$SLOT == "Free",1,0)
+airfareData$E_INCOME <- substr(airfareData$E_INCOME,2,length(airfareData$E_INCOME))
+airfareData$E_INCOME <- as.numeric(gsub(",","",airfareData$E_INCOME))
+airfareData$S_INCOME <- substr(airfareData$S_INCOME,2,length(airfareData$S_INCOME))
+airfareData$S_INCOME <- as.numeric(gsub(",","",airfareData$S_INCOME))
+airfareData$FARE <- as.numeric(substr(airfareData$FARE,2,length(airfareData$FARE)))
+airfareData$E_CODE <- ifelse(airfareData$E_CODE == "*",0,1)
+airfareData$S_CODE <- ifelse(airfareData$S_CODE == "*",0,1)  
+
+###Dividing data into training and testing set
+sample = sample.split(airfareData$PAX, SplitRatio = .85)
+airfareTrain = subset(airfareData, sample == TRUE)
+airfareTest = subset(airfareData, sample == FALSE)
+
+###Plotting the box plots
+boxplot(airfareData$NEW,main="NEW")
+boxplot(airfareData$SLOT,main="SLOT")
+boxplot(airfareData$S_INCOME,main="S_INCOME")
+boxplot(airfareData$DISTANCE,main="DISTANCE")
+boxplot(airfareData$S_POP,main="S_POP")
+boxplot(airfareData$E_POP,main="E_POP")
+boxplot(airfareData$HI,main="HI")
+boxplot(airfareData$E_INCOME,main="E_INCOME")
+boxplot(airfareData$VACATION,main="VACATION")
+boxplot(airfareData$COUPON,main="COUPON")
+boxplot(airfareData$FARE , main="FARE")
+boxplot(airfareData$SW , main="SW")
+boxplot(airfareData$GATE , main="GATE")
+
+
+plot(density(log(airfareData$FARE)))
+plot(density(airfareData$NEW))
+plot(density(airfareData$SLOT))
+#airfareTrain$LSLOT = log(max(airfareTrain$SLOT)+1-airfareTrain$SLOT)
+#plot(density(airfareData$LSLOT))
+plot(density(log(airfareData$S_INCOME)))
+plot(density(airfareData$DISTANCE))
+plot(density(log(airfareData$DISTANCE)))
+plot(density(airfareData$S_POP))
+plot(density(airfareData$E_POP))
+plot(density(log(airfareData$E_POP)))
+#plot(density(airfareData$lEPOP))
+plot(density(log(airfareData$HI)))
+plot(density(airfareData$SW))
+
+###Applying logarithmic transformations as the fields
+### HI,E_POP,DISTANCE,FARE,COUPON are identified as these are right scewed based on the plots
+### Hence after applying logarithmic transformations we will create a model again[in our case its model3]
+airfareTrain$LHI = log(airfareTrain$HI)
+airfareTrain$lEPOP = log(airfareTrain$E_POP)
+airfareTrain$LDISTANCE = log(airfareTrain$DISTANCE)
+airfareTrain$LFARE = log(airfareTrain$FARE)
+airfareTrain$LCOUPON = log(airfareTrain$COUPON)
+
+### Creating the first model and viewing the summary
+model1 <- lm(FARE ~ E_INCOME + S_INCOME,data =airfareTrain)
+summary(model1)
+
+### Creating the second model with some relevant data points and viewing the summary
+model2 <- lm(FARE ~ E_INCOME + DISTANCE+ PAX  + VACATION + SW + HI + S_POP+ E_POP,data =airfareTrain)
+summary(model2)
+
+mcor = cor(airfareTrain[,6:23])
+library(corrplot)
+png(height=1200,width = 1500,pointsize = 20,filename = "corrmatrix.jpg")
+corrplot(mcor,method = "number")
+###Plotting the variables against residuals
+###Applying logarithmic transformations as the fields
+### HI,E_POP,DISTANCE,FARE,COUPON are identified as these are right scewed based on the plots
+### Hence after applying logarithmic transformations we will create a model again[in our case its model3]
+airfareTrain$LHI = log(airfareTrain$HI)
+airfareTrain$lEPOP = log(airfareTrain$E_POP)
+airfareTrain$LDISTANCE = log(airfareTrain$DISTANCE)
+airfareTrain$LFARE = log(airfareTrain$FARE)
+airfareTrain$LCOUPON = log(airfareTrain$COUPON)
+plot(airfareTrain$FARE,model2$residuals)
+plot(airfareTrain$VACATION,model2$residuals)
+plot(airfareTrain$LDISTANCE,model2$residuals)
+plot(airfareTrain$S_POP,model2$residuals)
+plot(airfareTrain$E_POP,model2$residuals)
+plot(airfareTrain$LHI,model2$residuals)
+plot(airfareTrain$E_INCOME,model2$residuals)
+plot(airfareTrain$PAX,model2$residuals)
+plot(airfareTrain$SW,model2$residuals)
+plot(airfareTrain$lEPOP,model2$residuals)
+plot(airfareTrain$LCOUPON,model2$residuals)
+
+### Creating the third model with some relevant data points after transformations are done and viewing the summary
+### Based on the boxplots of residuals
+model3 <- lm(LFARE ~ E_INCOME + LDISTANCE + PAX +LCOUPON + VACATION + SW + LHI + S_POP+ lEPOP,data =airfareTrain)
+summary(model3)
+
+
+### Doing the prediction with the test data
+airfareTest$LHI = log(airfareTest$HI)
+airfareTest$lEPOP = log(airfareTest$E_POP)
+airfareTest$LDISTANCE = log(airfareTest$DISTANCE)
+airfareTest$LFARE = log(airfareTest$FARE)
+airfareTest$LCOUPON = log(airfareTest$COUPON)
+airfareTest$LFARE <- log(airfareTest$FARE)
+
+
+y_hat <- predict.lm(model3,newdata = airfareTest,se.fit = TRUE)$fit
+y_hat <- as.vector(y_hat)
+dev <- log(airfareTest$FARE)-y_hat
+num <- sum(dev^2)
+dev1 <- log(airfareTest$FARE)- mean(log(airfareTest$FARE))
+den <- sum(dev1^2)
+predicted_rsqr <- 1- (num/den)
+### Prediction statistic
+predicted_rsqr
+```{R}
