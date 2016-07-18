@@ -185,19 +185,21 @@ colnames(basicData_12_13) <- tolower(colnames(basicData_12_13))
 colnames(basicData_13_14) <- tolower(colnames(basicData_13_14))
 basicDataConsolidated <- rbind(basicData_12_13,basicData_13_14)
 
+colnames(schoolData_12_13) <- tolower(colnames(schoolData_12_13))
+colnames(schoolData_13_14) <- tolower(colnames(schoolData_13_14))
 
 
 View(enrollmentData_12_13)
 View(enrollmentData_13_14)
 basicEnrollmentDataConsolidated <- rbind(enrollmentData_12_13,enrollmentData_13_14)
 
-View(schoolData_12_13)
-View(schoolData_13_14)
-basicSchoolDataConsolidated <- rbind(schoolData_12_13,schoolData_13_14)
-  
+#some data is lost in this merge
+cols <- intersect(colnames(schoolData_12_13),colnames(schoolData_13_14))
+basicSchoolDataConsolidated <- rbind(schoolData_12_13[,cols],schoolData_13_14[,cols])
+##
+
 View(teacherData_12_13)
 View(teacherData_13_14)
 teacherdataConsolidated <- rbind(teacherData_12_13,teacherData_13_14)
 
-
-
+write.csv(basicDataConsolidated,file = "basicData.csv")
