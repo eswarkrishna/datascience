@@ -1113,6 +1113,164 @@ basicEnrollmentDataConsolidated$`Enr Py1 C7` <- NULL
 basicEnrollmentDataConsolidated$`Enr Py1 C8` <- NULL
 
 
+basicEnrollmentDataConsolidated$Enr_Cy_c1_total <- basicEnrollmentDataConsolidated$`Enr Cy C1`+
+  basicEnrollmentDataConsolidated$`Enr Cy C2`+
+  basicEnrollmentDataConsolidated$`Enr Cy C3`+
+  basicEnrollmentDataConsolidated$`Enr Cy C4`+
+  basicEnrollmentDataConsolidated$`Enr Cy C5`+
+  basicEnrollmentDataConsolidated$`Enr Cy C6`+
+  basicEnrollmentDataConsolidated$`Enr Cy C7`+
+  basicEnrollmentDataConsolidated$`Enr Cy C8`
+
+basicEnrollmentDataConsolidated$`Enr Cy C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Cy C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_G_c_total <- basicEnrollmentDataConsolidated$`Enr G C1`+
+  basicEnrollmentDataConsolidated$`Enr G C2`+
+  basicEnrollmentDataConsolidated$`Enr G C3`+
+  basicEnrollmentDataConsolidated$`Enr G C4`+
+  basicEnrollmentDataConsolidated$`Enr G C5`+
+  basicEnrollmentDataConsolidated$`Enr G C6`+
+  basicEnrollmentDataConsolidated$`Enr G C7`+
+  basicEnrollmentDataConsolidated$`Enr G C8`
+
+basicEnrollmentDataConsolidated$`Enr G C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr G C8` <- NULL
+
+
+basicEnrollmentDataConsolidated$Enr_DIS_B_total <- basicEnrollmentDataConsolidated$`Enr Dis B C1`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C2`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C3`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C4`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C5`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C6`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C7`+
+  basicEnrollmentDataConsolidated$`Enr Dis B C8`
+
+basicEnrollmentDataConsolidated$`Enr Dis B C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis B C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_DIS_G_total <- basicEnrollmentDataConsolidated$`Enr Dis G C1`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C2`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C3`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C4`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C5`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C6`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C7`+
+  basicEnrollmentDataConsolidated$`Enr Dis G C8`
+
+basicEnrollmentDataConsolidated$`Enr Dis G C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Dis G C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Med1_total <- basicEnrollmentDataConsolidated$`Enr Med1 1`+
+  basicEnrollmentDataConsolidated$`Enr Med1 2`+
+  basicEnrollmentDataConsolidated$`Enr Med1 3`+
+  basicEnrollmentDataConsolidated$`Enr Med1 4`+
+  basicEnrollmentDataConsolidated$`Enr Med1 5`+
+  basicEnrollmentDataConsolidated$`Enr Med1 6`+
+  basicEnrollmentDataConsolidated$`Enr Med1 7`
+
+basicEnrollmentDataConsolidated$`Enr Med1 1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med1 7` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Med2_total <- basicEnrollmentDataConsolidated$`Enr Med2 1`+
+  basicEnrollmentDataConsolidated$`Enr Med2 2`+
+  basicEnrollmentDataConsolidated$`Enr Med2 3`+
+  basicEnrollmentDataConsolidated$`Enr Med2 4`+
+  basicEnrollmentDataConsolidated$`Enr Med2 5`+
+  basicEnrollmentDataConsolidated$`Enr Med2 6`+
+  basicEnrollmentDataConsolidated$`Enr Med2 7`
+
+basicEnrollmentDataConsolidated$`Enr Med2 1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med2 7` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Med3_total <- basicEnrollmentDataConsolidated$`Enr Med3 1`+
+  basicEnrollmentDataConsolidated$`Enr Med3 2`+
+  basicEnrollmentDataConsolidated$`Enr Med3 3`+
+  basicEnrollmentDataConsolidated$`Enr Med3 4`+
+  basicEnrollmentDataConsolidated$`Enr Med3 5`+
+  basicEnrollmentDataConsolidated$`Enr Med3 6`+
+  basicEnrollmentDataConsolidated$`Enr Med3 7`
+
+basicEnrollmentDataConsolidated$`Enr Med3 1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Med3 7` <- NULL
+
+basicEnrollmentDataConsolidated$`Gerup Py1` <- NULL
+basicEnrollmentDataConsolidated$`Gerup Py2` <- NULL
+
+basicEnrollmentDataConsolidated$`Nerup Py1` <- NULL
+basicEnrollmentDataConsolidated$`Nerup Py2` <- NULL
+
+basicEnrollmentDataConsolidated$`Gerp Py1` <- NULL
+basicEnrollmentDataConsolidated$`Gerp Py2` <- NULL
+
+basicEnrollmentDataConsolidated$`Nerp Py1` <- NULL
+basicEnrollmentDataConsolidated$`Nerp Py2` <- NULL
+
+basicEnrollmentDataConsolidated$Rep_C_total <- basicEnrollmentDataConsolidated$`Rep C1`+
+  basicEnrollmentDataConsolidated$`Rep C2`+
+  basicEnrollmentDataConsolidated$`Rep C3`+
+  basicEnrollmentDataConsolidated$`Rep C4`+
+  basicEnrollmentDataConsolidated$`Rep C5`+
+  basicEnrollmentDataConsolidated$`Rep C6`+
+  basicEnrollmentDataConsolidated$`Rep C7`+
+  basicEnrollmentDataConsolidated$`Rep C8`
+
+basicEnrollmentDataConsolidated$`Rep C1` <- NULL
+basicEnrollmentDataConsolidated$`Rep C2` <- NULL
+basicEnrollmentDataConsolidated$`Rep C3` <- NULL
+basicEnrollmentDataConsolidated$`Rep C4` <- NULL
+basicEnrollmentDataConsolidated$`Rep C5` <- NULL
+basicEnrollmentDataConsolidated$`Rep C6` <- NULL
+basicEnrollmentDataConsolidated$`Rep C7` <- NULL
+basicEnrollmentDataConsolidated$`Rep C8` <- NULL
+
+
 alldataconsolidated <- merge(basicDataConsolidated,basicSchoolDataConsolidated,by.x=c('distcd','year','distname','statename','statecd'),by.y=c('distcd','year','distname','statename','statecd'))
+
+basicEnrollmentDataConsolidated$statecd <- basicEnrollmentDataConsolidated$Statecd
+basicEnrollmentDataConsolidated$statename <- basicEnrollmentDataConsolidated$`State Name `
+alldataconsolidated_2 <- merge(basicEnrollmentDataConsolidated,basicTeacherdataConsolidated,
+                               by.x = c('Year','statename','distname'),
+                               by.y = c('Year','statename','distname'))
 
 write.csv(basicDataConsolidated,file = "basicData.csv")
