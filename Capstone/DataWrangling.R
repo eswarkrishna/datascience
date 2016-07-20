@@ -3,6 +3,12 @@ library(dplyr)
 library(reshape)
 setwd("C:\\Users\\neoistheone\\Documents\\Capstone\\DISE")
 
+## Functions
+asNumeric <- function(x) as.numeric(as.character(x))
+factorsNumeric <- function(d) modifyList(d, lapply(d[, sapply(d, is.factor)],   
+                                                   asNumeric))
+
+
 # Cleaning data
 basicData_13_14 <- read.csv("DRC_Raw_Data_13_14_1.csv")
 basicData_13_14 <-slice(basicData_13_14,11:674)
@@ -565,8 +571,548 @@ basicSchoolDataConsolidated$`uniform up g`<- NULL
 
 ##
 
-View(teacherData_12_13)
-View(teacherData_13_14)
 basicTeacherdataConsolidated <- rbind(teacherData_12_13,teacherData_13_14)
+
+basicTeacherdataConsolidated[,5:180]<-factorsNumeric(basicTeacherdataConsolidated[,5:180])
+
+basicTeacherdataConsolidated$tch_govt_total <- basicTeacherdataConsolidated$tch_govt1+
+  basicTeacherdataConsolidated$tch_govt2+
+  basicTeacherdataConsolidated$tch_govt3+
+  basicTeacherdataConsolidated$tch_govt4+
+  basicTeacherdataConsolidated$tch_govt5+
+  basicTeacherdataConsolidated$tch_govt6+
+  basicTeacherdataConsolidated$tch_govt7+
+  basicTeacherdataConsolidated$tch_govt9
+
+basicTeacherdataConsolidated$tch_govt1 <- NULL
+basicTeacherdataConsolidated$tch_govt2 <- NULL
+basicTeacherdataConsolidated$tch_govt3 <- NULL
+basicTeacherdataConsolidated$tch_govt4 <- NULL
+basicTeacherdataConsolidated$tch_govt5 <- NULL
+basicTeacherdataConsolidated$tch_govt6 <- NULL
+basicTeacherdataConsolidated$tch_govt7 <- NULL
+basicTeacherdataConsolidated$tch_govt9 <- NULL
+
+basicTeacherdataConsolidated$tch_pvt_total <- basicTeacherdataConsolidated$tch_pvt1+
+  basicTeacherdataConsolidated$tch_pvt2+
+  basicTeacherdataConsolidated$tch_pvt3+
+  basicTeacherdataConsolidated$tch_pvt4+
+  basicTeacherdataConsolidated$tch_pvt5+
+  basicTeacherdataConsolidated$tch_pvt6+
+  basicTeacherdataConsolidated$tch_pvt7+
+  basicTeacherdataConsolidated$tch_pvt9
+
+basicTeacherdataConsolidated$tch_pvt1 <- NULL
+basicTeacherdataConsolidated$tch_pvt2 <- NULL
+basicTeacherdataConsolidated$tch_pvt3 <- NULL
+basicTeacherdataConsolidated$tch_pvt4 <- NULL
+basicTeacherdataConsolidated$tch_pvt5 <- NULL
+basicTeacherdataConsolidated$tch_pvt6 <- NULL
+basicTeacherdataConsolidated$tch_pvt7 <- NULL
+basicTeacherdataConsolidated$tch_pvt9 <- NULL
+
+
+basicTeacherdataConsolidated$tch_un_total <- basicTeacherdataConsolidated$tch_un1+
+  basicTeacherdataConsolidated$tch_un2+
+  basicTeacherdataConsolidated$tch_un3+
+  basicTeacherdataConsolidated$tch_un4+
+  basicTeacherdataConsolidated$tch_un5+
+  basicTeacherdataConsolidated$tch_un6+
+  basicTeacherdataConsolidated$tch_un7+
+  basicTeacherdataConsolidated$tch_un9
+
+basicTeacherdataConsolidated$tch_un1 <- NULL
+basicTeacherdataConsolidated$tch_un2 <- NULL
+basicTeacherdataConsolidated$tch_un3 <- NULL
+basicTeacherdataConsolidated$tch_un4 <- NULL
+basicTeacherdataConsolidated$tch_un5 <- NULL
+basicTeacherdataConsolidated$tch_un6 <- NULL
+basicTeacherdataConsolidated$tch_un7 <- NULL
+basicTeacherdataConsolidated$tch_un9 <- NULL
+
+basicTeacherdataConsolidated$tch_bs_total <- basicTeacherdataConsolidated$tch_bs1+
+  basicTeacherdataConsolidated$tch_bs2+
+  basicTeacherdataConsolidated$tch_bs3+
+  basicTeacherdataConsolidated$tch_bs4+
+  basicTeacherdataConsolidated$tch_bs5+
+  basicTeacherdataConsolidated$tch_bs6+
+  basicTeacherdataConsolidated$tch_bs7
+
+basicTeacherdataConsolidated$tch_bs1 <- NULL
+basicTeacherdataConsolidated$tch_bs2 <- NULL
+basicTeacherdataConsolidated$tch_bs3 <- NULL
+basicTeacherdataConsolidated$tch_bs4 <- NULL
+basicTeacherdataConsolidated$tch_bs5 <- NULL
+basicTeacherdataConsolidated$tch_bs6 <- NULL
+basicTeacherdataConsolidated$tch_bs7 <- NULL
+
+
+
+basicTeacherdataConsolidated$tch_s_total <- basicTeacherdataConsolidated$tch_s1+
+  basicTeacherdataConsolidated$tch_s2+
+  basicTeacherdataConsolidated$tch_s3+
+  basicTeacherdataConsolidated$tch_s4+
+  basicTeacherdataConsolidated$tch_s5+
+  basicTeacherdataConsolidated$tch_s6+
+  basicTeacherdataConsolidated$tch_s7
+
+basicTeacherdataConsolidated$tch_s1 <- NULL
+basicTeacherdataConsolidated$tch_s2 <- NULL
+basicTeacherdataConsolidated$tch_s3 <- NULL
+basicTeacherdataConsolidated$tch_s4 <- NULL
+basicTeacherdataConsolidated$tch_s5 <- NULL
+basicTeacherdataConsolidated$tch_s6 <- NULL
+basicTeacherdataConsolidated$tch_s7 <- NULL
+
+basicTeacherdataConsolidated$tch_hs_total <- basicTeacherdataConsolidated$tch_hs1+
+  basicTeacherdataConsolidated$tch_hs2+
+  basicTeacherdataConsolidated$tch_hs3+
+  basicTeacherdataConsolidated$tch_hs4+
+  basicTeacherdataConsolidated$tch_hs5+
+  basicTeacherdataConsolidated$tch_hs6+
+  basicTeacherdataConsolidated$tch_hs7
+
+basicTeacherdataConsolidated$tch_hs1 <- NULL
+basicTeacherdataConsolidated$tch_hs2 <- NULL
+basicTeacherdataConsolidated$tch_hs3 <- NULL
+basicTeacherdataConsolidated$tch_hs4 <- NULL
+basicTeacherdataConsolidated$tch_hs5 <- NULL
+basicTeacherdataConsolidated$tch_hs6 <- NULL
+basicTeacherdataConsolidated$tch_hs7 <- NULL
+
+basicTeacherdataConsolidated$tch_grad_total <- basicTeacherdataConsolidated$tch_grad1+
+  basicTeacherdataConsolidated$tch_grad2+
+  basicTeacherdataConsolidated$tch_grad3+
+  basicTeacherdataConsolidated$tch_grad4+
+  basicTeacherdataConsolidated$tch_grad5+
+  basicTeacherdataConsolidated$tch_grad6+
+  basicTeacherdataConsolidated$tch_grad7
+
+basicTeacherdataConsolidated$tch_grad1 <- NULL
+basicTeacherdataConsolidated$tch_grad2 <- NULL
+basicTeacherdataConsolidated$tch_grad3 <- NULL
+basicTeacherdataConsolidated$tch_grad4 <- NULL
+basicTeacherdataConsolidated$tch_grad5 <- NULL
+basicTeacherdataConsolidated$tch_grad6 <- NULL
+basicTeacherdataConsolidated$tch_grad7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_pgrad_total <- basicTeacherdataConsolidated$tch_pgrad1+
+  basicTeacherdataConsolidated$tch_pgrad2+
+  basicTeacherdataConsolidated$tch_pgrad3+
+  basicTeacherdataConsolidated$tch_pgrad4+
+  basicTeacherdataConsolidated$tch_pgrad5+
+  basicTeacherdataConsolidated$tch_pgrad6+
+  basicTeacherdataConsolidated$tch_pgrad7
+
+basicTeacherdataConsolidated$tch_pgrad1 <- NULL
+basicTeacherdataConsolidated$tch_pgrad2 <- NULL
+basicTeacherdataConsolidated$tch_pgrad3 <- NULL
+basicTeacherdataConsolidated$tch_pgrad4 <- NULL
+basicTeacherdataConsolidated$tch_pgrad5 <- NULL
+basicTeacherdataConsolidated$tch_pgrad6 <- NULL
+basicTeacherdataConsolidated$tch_pgrad7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_mph_total <- basicTeacherdataConsolidated$tch_mph1+
+  basicTeacherdataConsolidated$tch_mph2+
+  basicTeacherdataConsolidated$tch_mph3+
+  basicTeacherdataConsolidated$tch_mph4+
+  basicTeacherdataConsolidated$tch_mph5+
+  basicTeacherdataConsolidated$tch_mph6+
+  basicTeacherdataConsolidated$tch_mph7
+
+basicTeacherdataConsolidated$tch_mph1 <- NULL
+basicTeacherdataConsolidated$tch_mph2 <- NULL
+basicTeacherdataConsolidated$tch_mph3 <- NULL
+basicTeacherdataConsolidated$tch_mph4 <- NULL
+basicTeacherdataConsolidated$tch_mph5 <- NULL
+basicTeacherdataConsolidated$tch_mph6 <- NULL
+basicTeacherdataConsolidated$tch_mph7 <- NULL
+
+basicTeacherdataConsolidated$tch_pd_total <- basicTeacherdataConsolidated$tch_pd1+
+  basicTeacherdataConsolidated$tch_pd2+
+  basicTeacherdataConsolidated$tch_pd3+
+  basicTeacherdataConsolidated$tch_pd4+
+  basicTeacherdataConsolidated$tch_pd5+
+  basicTeacherdataConsolidated$tch_pd6+
+  basicTeacherdataConsolidated$tch_pd7
+
+basicTeacherdataConsolidated$tch_pd1 <- NULL
+basicTeacherdataConsolidated$tch_pd2 <- NULL
+basicTeacherdataConsolidated$tch_pd3 <- NULL
+basicTeacherdataConsolidated$tch_pd4 <- NULL
+basicTeacherdataConsolidated$tch_pd5 <- NULL
+basicTeacherdataConsolidated$tch_pd6 <- NULL
+basicTeacherdataConsolidated$tch_pd7 <- NULL
+
+
+
+basicTeacherdataConsolidated$tch_m_total <- basicTeacherdataConsolidated$tch_m1+
+  basicTeacherdataConsolidated$tch_m2+
+  basicTeacherdataConsolidated$tch_m3+
+  basicTeacherdataConsolidated$tch_m4+
+  basicTeacherdataConsolidated$tch_m5+
+  basicTeacherdataConsolidated$tch_m6+
+  basicTeacherdataConsolidated$tch_m7
+
+basicTeacherdataConsolidated$tch_m1 <- NULL
+basicTeacherdataConsolidated$tch_m2 <- NULL
+basicTeacherdataConsolidated$tch_m3 <- NULL
+basicTeacherdataConsolidated$tch_m4 <- NULL
+basicTeacherdataConsolidated$tch_m5 <- NULL
+basicTeacherdataConsolidated$tch_m6 <- NULL
+basicTeacherdataConsolidated$tch_m7 <- NULL
+
+basicTeacherdataConsolidated$tch_f_total <- basicTeacherdataConsolidated$tch_f1+
+  basicTeacherdataConsolidated$tch_f2+
+  basicTeacherdataConsolidated$tch_f3+
+  basicTeacherdataConsolidated$tch_f4+
+  basicTeacherdataConsolidated$tch_f5+
+  basicTeacherdataConsolidated$tch_f6+
+  basicTeacherdataConsolidated$tch_f7
+
+basicTeacherdataConsolidated$tch_f1 <- NULL
+basicTeacherdataConsolidated$tch_f2 <- NULL
+basicTeacherdataConsolidated$tch_f3 <- NULL
+basicTeacherdataConsolidated$tch_f4 <- NULL
+basicTeacherdataConsolidated$tch_f5 <- NULL
+basicTeacherdataConsolidated$tch_f6 <- NULL
+basicTeacherdataConsolidated$tch_f7 <- NULL
+
+basicTeacherdataConsolidated$tch_nr_total <- basicTeacherdataConsolidated$tch_nr1+
+  basicTeacherdataConsolidated$tch_nr2+
+  basicTeacherdataConsolidated$tch_nr3+
+  basicTeacherdataConsolidated$tch_nr4+
+  basicTeacherdataConsolidated$tch_nr5+
+  basicTeacherdataConsolidated$tch_nr6+
+  basicTeacherdataConsolidated$tch_nr7
+
+basicTeacherdataConsolidated$tch_nr1 <- NULL
+basicTeacherdataConsolidated$tch_nr2 <- NULL
+basicTeacherdataConsolidated$tch_nr3 <- NULL
+basicTeacherdataConsolidated$tch_nr4 <- NULL
+basicTeacherdataConsolidated$tch_nr5 <- NULL
+basicTeacherdataConsolidated$tch_nr6 <- NULL
+basicTeacherdataConsolidated$tch_nr7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_m_p_total <- basicTeacherdataConsolidated$tch_m_p1+
+  basicTeacherdataConsolidated$tch_m_p2+
+  basicTeacherdataConsolidated$tch_m_p3+
+  basicTeacherdataConsolidated$tch_m_p4+
+  basicTeacherdataConsolidated$tch_m_p5+
+  basicTeacherdataConsolidated$tch_m_p6+
+  basicTeacherdataConsolidated$tch_m_p7
+
+basicTeacherdataConsolidated$tch_m_p1 <- NULL
+basicTeacherdataConsolidated$tch_m_p2 <- NULL
+basicTeacherdataConsolidated$tch_m_p3 <- NULL
+basicTeacherdataConsolidated$tch_m_p4 <- NULL
+basicTeacherdataConsolidated$tch_m_p5 <- NULL
+basicTeacherdataConsolidated$tch_m_p6 <- NULL
+basicTeacherdataConsolidated$tch_m_p7 <- NULL
+
+basicTeacherdataConsolidated$tch_f_p_total <- basicTeacherdataConsolidated$tch_f_p1+
+  basicTeacherdataConsolidated$tch_f_p2+
+  basicTeacherdataConsolidated$tch_f_p3+
+  basicTeacherdataConsolidated$tch_f_p4+
+  basicTeacherdataConsolidated$tch_f_p5+
+  basicTeacherdataConsolidated$tch_f_p6+
+  basicTeacherdataConsolidated$tch_f_p7
+
+basicTeacherdataConsolidated$tch_f_p1 <- NULL
+basicTeacherdataConsolidated$tch_f_p2 <- NULL
+basicTeacherdataConsolidated$tch_f_p3 <- NULL
+basicTeacherdataConsolidated$tch_f_p4 <- NULL
+basicTeacherdataConsolidated$tch_f_p5 <- NULL
+basicTeacherdataConsolidated$tch_f_p6 <- NULL
+basicTeacherdataConsolidated$tch_f_p7 <- NULL
+
+basicTeacherdataConsolidated$tch_nr_p1 <- NULL
+basicTeacherdataConsolidated$tch_nr_p2 <- NULL
+basicTeacherdataConsolidated$tch_nr_p3 <- NULL
+basicTeacherdataConsolidated$tch_nr_p4 <- NULL
+basicTeacherdataConsolidated$tch_nr_p5 <- NULL
+basicTeacherdataConsolidated$tch_nr_p6 <- NULL
+basicTeacherdataConsolidated$tch_nr_p7 <- NULL
+
+basicTeacherdataConsolidated$tch_eduqual_nr1 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr2 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr3 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr4 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr5 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr6 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr7 <- NULL
+basicTeacherdataConsolidated$tch_eduqual_nr_p <- NULL
+
+
+
+basicTeacherdataConsolidated$tch_sc_m_total <- basicTeacherdataConsolidated$tch_sc_m1+
+  basicTeacherdataConsolidated$tch_sc_m2+
+  basicTeacherdataConsolidated$tch_sc_m3+
+  basicTeacherdataConsolidated$tch_sc_m4+
+  basicTeacherdataConsolidated$tch_sc_m5+
+  basicTeacherdataConsolidated$tch_sc_m6+
+  basicTeacherdataConsolidated$tch_sc_m7
+
+basicTeacherdataConsolidated$tch_sc_m1 <- NULL
+basicTeacherdataConsolidated$tch_sc_m2 <- NULL
+basicTeacherdataConsolidated$tch_sc_m3 <- NULL
+basicTeacherdataConsolidated$tch_sc_m4 <- NULL
+basicTeacherdataConsolidated$tch_sc_m5 <- NULL
+basicTeacherdataConsolidated$tch_sc_m6 <- NULL
+basicTeacherdataConsolidated$tch_sc_m7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_sc_f_total <- basicTeacherdataConsolidated$tch_sc_f1+
+  basicTeacherdataConsolidated$tch_sc_f2+
+  basicTeacherdataConsolidated$tch_sc_f3+
+  basicTeacherdataConsolidated$tch_sc_f4+
+  basicTeacherdataConsolidated$tch_sc_f5+
+  basicTeacherdataConsolidated$tch_sc_f6+
+  basicTeacherdataConsolidated$tch_sc_f7
+
+basicTeacherdataConsolidated$tch_sc_f1 <- NULL
+basicTeacherdataConsolidated$tch_sc_f2 <- NULL
+basicTeacherdataConsolidated$tch_sc_f3 <- NULL
+basicTeacherdataConsolidated$tch_sc_f4 <- NULL
+basicTeacherdataConsolidated$tch_sc_f5 <- NULL
+basicTeacherdataConsolidated$tch_sc_f6 <- NULL
+basicTeacherdataConsolidated$tch_sc_f7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_st_m_total <- basicTeacherdataConsolidated$tch_st_m1+
+  basicTeacherdataConsolidated$tch_st_m2+
+  basicTeacherdataConsolidated$tch_st_m3+
+  basicTeacherdataConsolidated$tch_st_m4+
+  basicTeacherdataConsolidated$tch_st_m5+
+  basicTeacherdataConsolidated$tch_st_m6+
+  basicTeacherdataConsolidated$tch_st_m7
+
+basicTeacherdataConsolidated$tch_st_m1 <- NULL
+basicTeacherdataConsolidated$tch_st_m2 <- NULL
+basicTeacherdataConsolidated$tch_st_m3 <- NULL
+basicTeacherdataConsolidated$tch_st_m4 <- NULL
+basicTeacherdataConsolidated$tch_st_m5 <- NULL
+basicTeacherdataConsolidated$tch_st_m6 <- NULL
+basicTeacherdataConsolidated$tch_st_m7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_st_f_total <- basicTeacherdataConsolidated$tch_st_f1+
+  basicTeacherdataConsolidated$tch_st_f2+
+  basicTeacherdataConsolidated$tch_st_f3+
+  basicTeacherdataConsolidated$tch_st_f4+
+  basicTeacherdataConsolidated$tch_st_f5+
+  basicTeacherdataConsolidated$tch_st_f6+
+  basicTeacherdataConsolidated$tch_st_f7
+
+basicTeacherdataConsolidated$tch_st_f1 <- NULL
+basicTeacherdataConsolidated$tch_st_f2 <- NULL
+basicTeacherdataConsolidated$tch_st_f3 <- NULL
+basicTeacherdataConsolidated$tch_st_f4 <- NULL
+basicTeacherdataConsolidated$tch_st_f5 <- NULL
+basicTeacherdataConsolidated$tch_st_f6 <- NULL
+basicTeacherdataConsolidated$tch_st_f7 <- NULL
+
+
+basicTeacherdataConsolidated$tch_pd_p <- NULL
+
+basicTeacherdataConsolidated$trn_tch_m_total <- basicTeacherdataConsolidated$trn_tch_m1+
+  basicTeacherdataConsolidated$trn_tch_m2+
+  basicTeacherdataConsolidated$trn_tch_m3+
+  basicTeacherdataConsolidated$trn_tch_m4+
+  basicTeacherdataConsolidated$trn_tch_m5+
+  basicTeacherdataConsolidated$trn_tch_m6+
+  basicTeacherdataConsolidated$trn_tch_m7
+
+basicTeacherdataConsolidated$trn_tch_m1 <- NULL
+basicTeacherdataConsolidated$trn_tch_m2 <- NULL
+basicTeacherdataConsolidated$trn_tch_m3 <- NULL
+basicTeacherdataConsolidated$trn_tch_m4 <- NULL
+basicTeacherdataConsolidated$trn_tch_m5 <- NULL
+basicTeacherdataConsolidated$trn_tch_m6 <- NULL
+basicTeacherdataConsolidated$trn_tch_m7 <- NULL
+
+
+basicTeacherdataConsolidated$trn_tch_f_total <- basicTeacherdataConsolidated$trn_tch_f1+
+  basicTeacherdataConsolidated$trn_tch_f2+
+  basicTeacherdataConsolidated$trn_tch_f3+
+  basicTeacherdataConsolidated$trn_tch_f4+
+  basicTeacherdataConsolidated$trn_tch_f5+
+  basicTeacherdataConsolidated$trn_tch_f6+
+  basicTeacherdataConsolidated$trn_tch_f7
+
+basicTeacherdataConsolidated$trn_tch_f1 <- NULL
+basicTeacherdataConsolidated$trn_tch_f2 <- NULL
+basicTeacherdataConsolidated$trn_tch_f3 <- NULL
+basicTeacherdataConsolidated$trn_tch_f4 <- NULL
+basicTeacherdataConsolidated$trn_tch_f5 <- NULL
+basicTeacherdataConsolidated$trn_tch_f6 <- NULL
+basicTeacherdataConsolidated$trn_tch_f7 <- NULL
+
+
+## Basic Enrollment Data cleaning
+basicEnrollmentDataConsolidated[,6:166] = factorsNumeric(basicEnrollmentDataConsolidated[,6:166])
+basicEnrollmentDataConsolidated$Enr_Govt_total <- basicEnrollmentDataConsolidated$`Enr Govt1`+
+  basicEnrollmentDataConsolidated$`Enr Govt2`+
+  basicEnrollmentDataConsolidated$`Enr Govt3`+
+  basicEnrollmentDataConsolidated$`Enr Govt4`+
+  basicEnrollmentDataConsolidated$`Enr Govt5`+
+  basicEnrollmentDataConsolidated$`Enr Govt6`+
+  basicEnrollmentDataConsolidated$`Enr Govt7`
+
+basicEnrollmentDataConsolidated$`Enr Govt1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Govt9` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Pvt_total <- basicEnrollmentDataConsolidated$`Enr Pvt1`+
+  basicEnrollmentDataConsolidated$`Enr Pvt2`+
+  basicEnrollmentDataConsolidated$`Enr Pvt3`+
+  basicEnrollmentDataConsolidated$`Enr Pvt4`+
+  basicEnrollmentDataConsolidated$`Enr Pvt5`+
+  basicEnrollmentDataConsolidated$`Enr Pvt6`+
+  basicEnrollmentDataConsolidated$`Enr Pvt7`
+
+basicEnrollmentDataConsolidated$`Enr Pvt1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Pvt9` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Govt_R_total <- basicEnrollmentDataConsolidated$`Enr R Govt1`+
+  basicEnrollmentDataConsolidated$`Enr R Govt2`+
+  basicEnrollmentDataConsolidated$`Enr R Govt3`+
+  basicEnrollmentDataConsolidated$`Enr R Govt4`+
+  basicEnrollmentDataConsolidated$`Enr R Govt5`+
+  basicEnrollmentDataConsolidated$`Enr R Govt6`+
+  basicEnrollmentDataConsolidated$`Enr R Govt7`
+
+basicEnrollmentDataConsolidated$`Enr R Govt1` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt2` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt3` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt4` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt5` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt6` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt7` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt9` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_R_Govt_total <- basicEnrollmentDataConsolidated$`Enr R Govt1`+
+  basicEnrollmentDataConsolidated$`Enr R Govt2`+
+  basicEnrollmentDataConsolidated$`Enr R Govt3`+
+  basicEnrollmentDataConsolidated$`Enr R Govt4`+
+  basicEnrollmentDataConsolidated$`Enr R Govt5`+
+  basicEnrollmentDataConsolidated$`Enr R Govt6`+
+  basicEnrollmentDataConsolidated$`Enr R Govt7`
+
+basicEnrollmentDataConsolidated$`Enr R Govt1` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt2` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt3` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt4` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt5` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt6` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt7` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Govt9` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_R_Pvt_total <- basicEnrollmentDataConsolidated$`Enr R Pvt1`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt2`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt3`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt4`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt5`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt6`+
+  basicEnrollmentDataConsolidated$`Enr R Pvt7`
+
+basicEnrollmentDataConsolidated$`Enr R Pvt1` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt2` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt3` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt4` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt5` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt6` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt7` <- NULL
+basicEnrollmentDataConsolidated$`Enr R Pvt9` <- NULL
+
+
+basicEnrollmentDataConsolidated$Enr_py4_c1_total <- basicEnrollmentDataConsolidated$`Enr Py4 C1`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C2`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C3`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C4`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C5`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C6`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C7`+
+  basicEnrollmentDataConsolidated$`Enr Py4 C8`
+
+basicEnrollmentDataConsolidated$`Enr Py4 C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py4 C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_py3_c1_total <- basicEnrollmentDataConsolidated$`Enr Py3 C1`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C2`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C3`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C4`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C5`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C6`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C7`+
+  basicEnrollmentDataConsolidated$`Enr Py3 C8`
+
+basicEnrollmentDataConsolidated$`Enr Py3 C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py3 C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_py2_c1_total <- basicEnrollmentDataConsolidated$`Enr Py2 C1`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C2`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C3`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C4`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C5`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C6`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C7`+
+  basicEnrollmentDataConsolidated$`Enr Py2 C8`
+
+basicEnrollmentDataConsolidated$`Enr Py2 C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py2 C8` <- NULL
+
+basicEnrollmentDataConsolidated$Enr_Py1_c1_total <- basicEnrollmentDataConsolidated$`Enr Py1 C1`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C2`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C3`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C4`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C5`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C6`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C7`+
+  basicEnrollmentDataConsolidated$`Enr Py1 C8`
+
+basicEnrollmentDataConsolidated$`Enr Py1 C1` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C2` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C3` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C4` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C5` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C6` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C7` <- NULL
+basicEnrollmentDataConsolidated$`Enr Py1 C8` <- NULL
+
+
+alldataconsolidated <- merge(basicDataConsolidated,basicSchoolDataConsolidated,by.x=c('distcd','year','distname','statename','statecd'),by.y=c('distcd','year','distname','statename','statecd'))
 
 write.csv(basicDataConsolidated,file = "basicData.csv")
