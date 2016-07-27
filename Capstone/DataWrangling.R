@@ -1,7 +1,7 @@
 ##importing libraries
 library(dplyr)
 library(reshape)
-setwd("C:\\Users\\neoistheone\\Documents\\Capstone\\DISE")
+setwd("C:\\Users\\Documents\\Capstone\\DISE")
 
 ## Functions
 asNumeric <- function(x) as.numeric(as.character(x))
