@@ -7,7 +7,7 @@ where we have downloaded and placed Capstone folder
 
 
 TODO
-* Filter the data from the Excel sheet 3 yrs 5 states -done
+* Filter the data from the Excel sheet 2 yrs all states -done
 * Tidy it and clean up unnecessary data -done
 * Plotting and visualisations using ggplot/tableau - started , try different types.
 * Correlation analysis. We will be able able to figure out the relations between features / parameters -done, build a plot-pending
