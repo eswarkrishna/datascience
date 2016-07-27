@@ -99,87 +99,178 @@ summary(model1)
 # remove the less significant variables
 model2 <- lm(overall_lit ~ p_urb_pop +  schpvt_total+sch_r_govt_total+ sch_r_pvt_total + cls1.school+ tch1.school,final_data)
 summary(model2)
+# Dividing sample to train and test data
+sample = sample.split(final_data$overall_lit, SplitRatio = .8)
+final_dataTrain = subset(final_data, sample == TRUE)
+final_dataTest = subset(final_data, sample == FALSE)
+
+
 # Applying transormations on the data
 #based on above plots
-final_data$overall_lit[is.nan(final_data$overall_lit)] <- NA
-final_data$overall_lit[is.na(final_data$overall_lit)] <- 0
-final_data$overall_lit <- final_data$overall_lit^3
+final_dataTrain$overall_lit[is.nan(final_dataTrain$overall_lit)] <- NA
+final_dataTrain$overall_lit[is.na(final_dataTrain$overall_lit)] <- 0
+final_dataTrain$overall_lit <- final_dataTrain$overall_lit^3
 
-final_data$schpvt_total[is.nan(final_data$schpvt_total)] <- NA
-final_data$schpvt_total[is.na(final_data$schpvt_total)] <- 0
-
-
-final_data$p_urb_pop[is.nan(final_data$p_urb_pop)] <- NA
-final_data$p_urb_pop[is.na(final_data$p_urb_pop)] <- 0
-final_data$p_urb_pop <- log(final_data$p_urb_pop)
-final_data$p_urb_pop[is.nan(final_data$p_urb_pop)] <- NA
-final_data$p_urb_pop[is.na(final_data$p_urb_pop)] <- 0
-final_data$p_urb_pop[is.infinite(final_data$p_urb_pop)] <- 0
-plot(density(final_data$p_urb_pop))
-
-final_data$sch_r_govt_total[is.nan(final_data$sch_r_govt_total)] <- NA
-final_data$sch_r_govt_total[is.na(final_data$sch_r_govt_total)] <- 0
-final_data$sch_r_govt_total <- log(final_data$sch_r_govt_total)
-
-final_data$cls1.school[is.infinite(final_data$cls1.school)] <- NA
-final_data$cls1.school[is.nan(final_data$cls1.school)] <- NA
-final_data$cls1.school[is.na(final_data$cls1.school)] <- 0
-final_data$cls1.school <- log(final_data$cls1.school)
-final_data$cls1.school[is.infinite(final_data$cls1.school)] <- 0
-
-final_data$tch1.school[is.infinite(final_data$tch1.school)] <- NA
-final_data$tch1.school[is.nan(final_data$tch1.school)] <- NA
-final_data$tch1.school[is.na(final_data$tch1.school)] <- 1
-final_data$tch1.school <- log(final_data$tch1.school)
-final_data$tch1.school[is.infinite(final_data$tch1.school)] <- 0
-
-final_data$gtoilet.sch <- final_data$gtoilet.sch^3
-final_data$water.sch <- log(final_data$water.sch)
-
-final_data$enr.stch.sch <- log(final_data$enr.stch.sch) # right scewed
-final_data$enr.stch.sch[is.infinite(final_data$enr.stch.sch)] <- 0
-
-final_data$no.fem.sch <- log(final_data$no.fem.sch) # right scewed
-final_data$no.fem.sch[is.infinite(final_data$no.fem.sch)] <- 0
-
-final_data$sch.50enr <- log(final_data$sch.50enr) # right scewed
-final_data$sch.50enr[is.infinite(final_data$sch.50enr)] <- 0
-
-final_data$tot.cls <- log(final_data$tot.cls) # right scewed
-final_data$tot.cls[is.infinite(final_data$tot.cls)] <- 0
+final_dataTrain$schpvt_total[is.nan(final_dataTrain$schpvt_total)] <- NA
+final_dataTrain$schpvt_total[is.na(final_dataTrain$schpvt_total)] <- 0
 
 
-final_data$books_total <- final_data$books_total^3 - final_data$books_total+final_data$books_total^2
-final_data$uniform_total <- (final_data$uniform_total-final_data$uniform_total^2-final_data$uniform_total^3)^2
+final_dataTrain$p_urb_pop[is.nan(final_dataTrain$p_urb_pop)] <- NA
+final_dataTrain$p_urb_pop[is.na(final_dataTrain$p_urb_pop)] <- 0
+final_dataTrain$p_urb_pop <- log(final_dataTrain$p_urb_pop)
+final_dataTrain$p_urb_pop[is.nan(final_dataTrain$p_urb_pop)] <- NA
+final_dataTrain$p_urb_pop[is.na(final_dataTrain$p_urb_pop)] <- 0
+final_dataTrain$p_urb_pop[is.infinite(final_dataTrain$p_urb_pop)] <- 0
+plot(density(final_dataTrain$p_urb_pop))
 
-final_data$Enr_Govt_total <- log(final_data$Enr_Govt_total)
-final_data$Enr_Pvt_total <- log(final_data$Enr_Pvt_total) 
-final_data$Enr_Pvt_total[is.infinite(final_data$Enr_Pvt_total)] <- 0
+final_dataTrain$sch_r_govt_total[is.nan(final_dataTrain$sch_r_govt_total)] <- NA
+final_dataTrain$sch_r_govt_total[is.na(final_dataTrain$sch_r_govt_total)] <- 0
+final_dataTrain$sch_r_govt_total <- log(final_dataTrain$sch_r_govt_total)
 
-final_data$Enr_Govt_R_total <-  log(final_data$Enr_Govt_R_total)
-final_data$Enr_Govt_R_total[is.infinite(final_data$Enr_Govt_R_total)] <- 0
-final_data$Enr_R_Pvt_total <- log(final_data$Enr_R_Pvt_total)  
-final_data$Enr_R_Pvt_total[is.infinite(final_data$Enr_R_Pvt_total)] <- 0
+final_dataTrain$cls1.school[is.infinite(final_dataTrain$cls1.school)] <- NA
+final_dataTrain$cls1.school[is.nan(final_dataTrain$cls1.school)] <- NA
+final_dataTrain$cls1.school[is.na(final_dataTrain$cls1.school)] <- 0
+final_dataTrain$cls1.school <- log(final_dataTrain$cls1.school)
+final_dataTrain$cls1.school[is.infinite(final_dataTrain$cls1.school)] <- 0
+
+final_dataTrain$tch1.school[is.infinite(final_dataTrain$tch1.school)] <- NA
+final_dataTrain$tch1.school[is.nan(final_dataTrain$tch1.school)] <- NA
+final_dataTrain$tch1.school[is.na(final_dataTrain$tch1.school)] <- 1
+final_dataTrain$tch1.school <- log(final_dataTrain$tch1.school)
+final_dataTrain$tch1.school[is.infinite(final_dataTrain$tch1.school)] <- 0
+
+final_dataTrain$gtoilet.sch <- final_dataTrain$gtoilet.sch^3
+final_dataTrain$water.sch <- log(final_dataTrain$water.sch)
+
+final_dataTrain$enr.stch.sch <- log(final_dataTrain$enr.stch.sch) # right scewed
+final_dataTrain$enr.stch.sch[is.infinite(final_dataTrain$enr.stch.sch)] <- 0
+
+final_dataTrain$no.fem.sch <- log(final_dataTrain$no.fem.sch) # right scewed
+final_dataTrain$no.fem.sch[is.infinite(final_dataTrain$no.fem.sch)] <- 0
+
+final_dataTrain$sch.50enr <- log(final_dataTrain$sch.50enr) # right scewed
+final_dataTrain$sch.50enr[is.infinite(final_dataTrain$sch.50enr)] <- 0
+
+final_dataTrain$tot.cls <- log(final_dataTrain$tot.cls) # right scewed
+final_dataTrain$tot.cls[is.infinite(final_dataTrain$tot.cls)] <- 0
 
 
-final_data$tch_govt_total <- log(final_data$tch_govt_total)
-final_data$tch_govt_total[is.infinite(final_data$tch_govt_total)] <- 0
+final_dataTrain$books_total <- final_dataTrain$books_total^3 - final_dataTrain$books_total+final_dataTrain$books_total^2
+final_dataTrain$uniform_total <- (final_dataTrain$uniform_total-final_dataTrain$uniform_total^2-final_dataTrain$uniform_total^3)^2
+
+final_dataTrain$Enr_Govt_total <- log(final_dataTrain$Enr_Govt_total)
+final_dataTrain$Enr_Pvt_total <- log(final_dataTrain$Enr_Pvt_total) 
+final_dataTrain$Enr_Pvt_total[is.infinite(final_dataTrain$Enr_Pvt_total)] <- 0
+
+final_dataTrain$Enr_Govt_R_total <-  log(final_dataTrain$Enr_Govt_R_total)
+final_dataTrain$Enr_Govt_R_total[is.infinite(final_dataTrain$Enr_Govt_R_total)] <- 0
+final_dataTrain$Enr_R_Pvt_total <- log(final_dataTrain$Enr_R_Pvt_total)  
+final_dataTrain$Enr_R_Pvt_total[is.infinite(final_dataTrain$Enr_R_Pvt_total)] <- 0
 
 
-final_data$tch_pvt_total <- log(final_data$tch_pvt_total)
-final_data$tch_pvt_total[is.infinite(final_data$tch_pvt_total)] <- 0
+final_dataTrain$tch_govt_total <- log(final_dataTrain$tch_govt_total)
+final_dataTrain$tch_govt_total[is.infinite(final_dataTrain$tch_govt_total)] <- 0
 
 
-final_data$Sc.Enrp.Cy <- log(final_data$Sc.Enrp.Cy)
-final_data$Sc.Enrp.Cy[is.infinite(final_data$Sc.Enrp.Cy)] <- 0
+final_dataTrain$tch_pvt_total <- log(final_dataTrain$tch_pvt_total)
+final_dataTrain$tch_pvt_total[is.infinite(final_dataTrain$tch_pvt_total)] <- 0
 
 
-final_data$St.Enrp.Cy <- log(final_data$St.Enrp.Cy)
-final_data$St.Enrp.Cy[is.infinite(final_data$St.Enrp.Cy)] <- 0
+final_dataTrain$Sc.Enrp.Cy <- log(final_dataTrain$Sc.Enrp.Cy)
+final_dataTrain$Sc.Enrp.Cy[is.infinite(final_dataTrain$Sc.Enrp.Cy)] <- 0
 
 
-model3 <- lm(overall_lit ~   p_urb_pop +sch_r_govt_total+ sch_r_pvt_total + cls1.school + tch1.school + gtoilet.sch+water.sch+ enr.stch.sch+ no.fem.sch+ sch.50enr + cls.major +  electric.sch_total+  sch_un_total + Enr_Govt_total+Enr_Pvt_total + tch_govt_total,final_data)
+final_dataTrain$St.Enrp.Cy <- log(final_dataTrain$St.Enrp.Cy)
+final_dataTrain$St.Enrp.Cy[is.infinite(final_dataTrain$St.Enrp.Cy)] <- 0
 
 
+model3 <- lm(overall_lit ~   p_urb_pop +sch_r_govt_total+ sch_r_pvt_total + cls1.school + tch1.school + gtoilet.sch+water.sch+ enr.stch.sch+ no.fem.sch+ sch.50enr + cls.major +  electric.sch_total+  sch_un_total + Enr_Govt_total+Enr_Pvt_total + tch_govt_total,final_dataTrain)
+
+
+###Transformations for test data
+final_dataTest$overall_lit[is.nan(final_dataTest$overall_lit)] <- NA
+final_dataTest$overall_lit[is.na(final_dataTest$overall_lit)] <- 0
+final_dataTest$overall_lit <- final_dataTest$overall_lit^3
+
+final_dataTest$schpvt_total[is.nan(final_dataTest$schpvt_total)] <- NA
+final_dataTest$schpvt_total[is.na(final_dataTest$schpvt_total)] <- 0
+
+
+final_dataTest$p_urb_pop[is.nan(final_dataTest$p_urb_pop)] <- NA
+final_dataTest$p_urb_pop[is.na(final_dataTest$p_urb_pop)] <- 0
+final_dataTest$p_urb_pop <- log(final_dataTest$p_urb_pop)
+final_dataTest$p_urb_pop[is.nan(final_dataTest$p_urb_pop)] <- NA
+final_dataTest$p_urb_pop[is.na(final_dataTest$p_urb_pop)] <- 0
+final_dataTest$p_urb_pop[is.infinite(final_dataTest$p_urb_pop)] <- 0
+plot(density(final_dataTest$p_urb_pop))
+
+final_dataTest$sch_r_govt_total[is.nan(final_dataTest$sch_r_govt_total)] <- NA
+final_dataTest$sch_r_govt_total[is.na(final_dataTest$sch_r_govt_total)] <- 0
+final_dataTest$sch_r_govt_total <- log(final_dataTest$sch_r_govt_total)
+
+final_dataTest$cls1.school[is.infinite(final_dataTest$cls1.school)] <- NA
+final_dataTest$cls1.school[is.nan(final_dataTest$cls1.school)] <- NA
+final_dataTest$cls1.school[is.na(final_dataTest$cls1.school)] <- 0
+final_dataTest$cls1.school <- log(final_dataTest$cls1.school)
+final_dataTest$cls1.school[is.infinite(final_dataTest$cls1.school)] <- 0
+
+final_dataTest$tch1.school[is.infinite(final_dataTest$tch1.school)] <- NA
+final_dataTest$tch1.school[is.nan(final_dataTest$tch1.school)] <- NA
+final_dataTest$tch1.school[is.na(final_dataTest$tch1.school)] <- 1
+final_dataTest$tch1.school <- log(final_dataTest$tch1.school)
+final_dataTest$tch1.school[is.infinite(final_dataTest$tch1.school)] <- 0
+
+final_dataTest$gtoilet.sch <- final_dataTest$gtoilet.sch^3
+final_dataTest$water.sch <- log(final_dataTest$water.sch)
+
+final_dataTest$enr.stch.sch <- log(final_dataTest$enr.stch.sch) # right scewed
+final_dataTest$enr.stch.sch[is.infinite(final_dataTest$enr.stch.sch)] <- 0
+
+final_dataTest$no.fem.sch <- log(final_dataTest$no.fem.sch) # right scewed
+final_dataTest$no.fem.sch[is.infinite(final_dataTest$no.fem.sch)] <- 0
+
+final_dataTest$sch.50enr <- log(final_dataTest$sch.50enr) # right scewed
+final_dataTest$sch.50enr[is.infinite(final_dataTest$sch.50enr)] <- 0
+
+final_dataTest$tot.cls <- log(final_dataTest$tot.cls) # right scewed
+final_dataTest$tot.cls[is.infinite(final_dataTest$tot.cls)] <- 0
+
+
+final_dataTest$books_total <- final_dataTest$books_total^3 - final_dataTest$books_total+final_dataTest$books_total^2
+final_dataTest$uniform_total <- (final_dataTest$uniform_total-final_dataTest$uniform_total^2-final_dataTest$uniform_total^3)^2
+
+final_dataTest$Enr_Govt_total <- log(final_dataTest$Enr_Govt_total)
+final_dataTest$Enr_Pvt_total <- log(final_dataTest$Enr_Pvt_total) 
+final_dataTest$Enr_Pvt_total[is.infinite(final_dataTest$Enr_Pvt_total)] <- 0
+
+final_dataTest$Enr_Govt_R_total <-  log(final_dataTest$Enr_Govt_R_total)
+final_dataTest$Enr_Govt_R_total[is.infinite(final_dataTest$Enr_Govt_R_total)] <- 0
+final_dataTest$Enr_R_Pvt_total <- log(final_dataTest$Enr_R_Pvt_total)  
+final_dataTest$Enr_R_Pvt_total[is.infinite(final_dataTest$Enr_R_Pvt_total)] <- 0
+
+
+final_dataTest$tch_govt_total <- log(final_dataTest$tch_govt_total)
+final_dataTest$tch_govt_total[is.infinite(final_dataTest$tch_govt_total)] <- 0
+
+
+final_dataTest$tch_pvt_total <- log(final_dataTest$tch_pvt_total)
+final_dataTest$tch_pvt_total[is.infinite(final_dataTest$tch_pvt_total)] <- 0
+
+
+final_dataTest$Sc.Enrp.Cy <- log(final_dataTest$Sc.Enrp.Cy)
+final_dataTest$Sc.Enrp.Cy[is.infinite(final_dataTest$Sc.Enrp.Cy)] <- 0
+
+
+final_dataTest$St.Enrp.Cy <- log(final_dataTest$St.Enrp.Cy)
+final_dataTest$St.Enrp.Cy[is.infinite(final_dataTest$St.Enrp.Cy)] <- 0
 summary(model3)
-     
+
+## Generating the predicted RSquared Value to test prediction
+y_hat <- predict.lm(model3,newdata = final_dataTest,se.fit = TRUE)$fit
+y_hat <- as.vector(y_hat)
+dev <- final_dataTest$overall_lit-y_hat
+num <- sum(dev^2)
+dev1 <- final_dataTest$overall_lit- mean(final_dataTest$overall_lit)
+den <- sum(dev1^2)
+predicted_rsqr <- 1- (num/den)
+predicted_rsqr
