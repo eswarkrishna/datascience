@@ -1005,22 +1005,6 @@ basicEnrollmentDataConsolidated$`Enr R Govt6` <- NULL
 basicEnrollmentDataConsolidated$`Enr R Govt7` <- NULL
 basicEnrollmentDataConsolidated$`Enr R Govt9` <- NULL
 
-basicEnrollmentDataConsolidated$Enr_R_Govt_total <- basicEnrollmentDataConsolidated$`Enr R Govt1`+
-  basicEnrollmentDataConsolidated$`Enr R Govt2`+
-  basicEnrollmentDataConsolidated$`Enr R Govt3`+
-  basicEnrollmentDataConsolidated$`Enr R Govt4`+
-  basicEnrollmentDataConsolidated$`Enr R Govt5`+
-  basicEnrollmentDataConsolidated$`Enr R Govt6`+
-  basicEnrollmentDataConsolidated$`Enr R Govt7`
-
-basicEnrollmentDataConsolidated$`Enr R Govt1` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt2` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt3` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt4` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt5` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt6` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt7` <- NULL
-basicEnrollmentDataConsolidated$`Enr R Govt9` <- NULL
 
 basicEnrollmentDataConsolidated$Enr_R_Pvt_total <- basicEnrollmentDataConsolidated$`Enr R Pvt1`+
   basicEnrollmentDataConsolidated$`Enr R Pvt2`+
@@ -1267,10 +1251,85 @@ basicEnrollmentDataConsolidated$`Rep C8` <- NULL
 
 alldataconsolidated <- merge(basicDataConsolidated,basicSchoolDataConsolidated,by.x=c('distcd','year','distname','statename','statecd'),by.y=c('distcd','year','distname','statename','statecd'))
 
+alldataconsolidated[,6:57] <- factorsNumeric(alldataconsolidated[,6:57])
+
+write.csv(alldataconsolidated,file = "mergeddata1.csv")
+
+
+# replaces na with '0'
+alldataconsolidated[is.na(alldataconsolidated)] <- 0
+data1 <- cor(alldataconsolidated[,6:57])
 basicEnrollmentDataConsolidated$statecd <- basicEnrollmentDataConsolidated$Statecd
 basicEnrollmentDataConsolidated$statename <- basicEnrollmentDataConsolidated$`State Name `
 alldataconsolidated_2 <- merge(basicEnrollmentDataConsolidated,basicTeacherdataConsolidated,
                                by.x = c('Year','statename','distname'),
                                by.y = c('Year','statename','distname'))
 
-write.csv(basicDataConsolidated,file = "basicData.csv")
+
+
+alldataconsolidated_2[,7:84] <- factorsNumeric(alldataconsolidated_2[,7:84])
+
+#Unnecessary data
+alldataconsolidated_2$`Gerp Cy` <- NULL
+alldataconsolidated_2$`Gerup Cy` <- NULL
+alldataconsolidated_2$`Nerp Cy` <- NULL
+alldataconsolidated_2$`Nerup Cy` <- NULL
+data <- cor(alldataconsolidated_2[,7:80])
+
+##due to multi collinearity we are removing some fields
+alldataconsolidated_2$`Sc Enrup Cy` <- NULL
+alldataconsolidated_2$`Scg Enrp Cy` <- NULL
+alldataconsolidated_2$`Scg Enrup Cy` <- NULL
+data <- cor(alldataconsolidated_2[,7:77])
+alldataconsolidated_2$`Grossness Up` <- NULL
+alldataconsolidated_2$`Pc Girls` <- NULL
+data <- cor(alldataconsolidated_2[,7:75])
+
+alldataConsolidated_final <- merge(alldataconsolidated,alldataconsolidated_2,
+                                   by.x = c('year','statename','distname')
+                                   ,by.y = c('Year','statename','distname'))
+
+alldataConsolidated_final$statecd.x <- NULL
+alldataConsolidated_final$statecd.y <- NULL
+alldataConsolidated_final$distcd.x <- NULL
+alldataConsolidated_final$distcd.y <- NULL
+alldataConsolidated_final$`State Name ` <- NULL
+alldataConsolidated_final[,6:124] <- factorsNumeric(alldataConsolidated_final[,6:124])
+
+alldataConsolidated_final$sdg_total <- alldataConsolidated_final$`sdg 1`+
+  alldataConsolidated_final$`sdg 2`+
+  alldataConsolidated_final$`sdg 3`+
+  alldataConsolidated_final$`sdg 4`+
+  alldataConsolidated_final$`sdg 5`+
+  alldataConsolidated_final$`sdg 6`+
+  alldataConsolidated_final$`sdg 7`
+
+alldataConsolidated_final$`sdg 1` <- NULL
+alldataConsolidated_final$`sdg 2`<- NULL
+alldataConsolidated_final$`sdg 3`<- NULL
+alldataConsolidated_final$`sdg 4`<- NULL
+alldataConsolidated_final$`sdg 5`<- NULL
+alldataConsolidated_final$`sdg 6`<- NULL
+alldataConsolidated_final$`sdg 7`<- NULL
+
+alldataConsolidated_final$tlm_total <- alldataConsolidated_final$`tlm 1`+
+  alldataConsolidated_final$`tlm 2`+
+  alldataConsolidated_final$`tlm 3`+
+  alldataConsolidated_final$`tlm 4`+
+  alldataConsolidated_final$`tlm 5`+
+  alldataConsolidated_final$`tlm 6`+
+  alldataConsolidated_final$`tlm 7`
+
+alldataConsolidated_final$`tlm 1` <- NULL
+alldataConsolidated_final$`tlm 2`<- NULL
+alldataConsolidated_final$`tlm 3`<- NULL
+alldataConsolidated_final$`tlm 4`<- NULL
+alldataConsolidated_final$`tlm 5`<- NULL
+alldataConsolidated_final$`tlm 6`<- NULL
+alldataConsolidated_final$`tlm 7`<- NULL
+alldataConsolidated_final$Statecd <- NULL
+
+colSums(is.na(alldataConsolidated_final))
+# no NAs are present
+
+write.csv(alldataConsolidated_final,file = "final_data.csv")
