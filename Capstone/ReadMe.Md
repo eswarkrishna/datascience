@@ -7,11 +7,11 @@ where we have downloaded and placed Capstone folder
 
 
 TODO
-1) Filter the data from the Excel sheet 3 yrs 5 states -done
-2) Tidy it and clean up unnecessary data -done
-3) Plotting and visualisations using ggplot/tableau - started , try different types.
-4) Correlation analysis. We will be able able to figure out the relations between features / parameters -done, build a plot
-5) Bring out patterns in the data to identify relevance of the fields - started
-5) Statistical model building on the data like regression analysis - Done
-6) you will need additional test data to build predictions and its accuracy. Prediction score - Not started - 1 hr
-7) Rmd file or word doc to be submitted for report . - Story to be done.
+* Filter the data from the Excel sheet 3 yrs 5 states -done
+* Tidy it and clean up unnecessary data -done
+* Plotting and visualisations using ggplot/tableau - started , try different types.
+* Correlation analysis. We will be able able to figure out the relations between features / parameters -done, build a plot
+* Bring out patterns in the data to identify relevance of the fields - started
+* Statistical model building on the data like regression analysis - Done
+* you will need additional test data to build predictions and its accuracy. Prediction score - Not started - 1 hr
+* Rmd file or word doc to be submitted for report . - Story to be done.
