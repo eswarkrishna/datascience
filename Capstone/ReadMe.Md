@@ -9,7 +9,7 @@ where we have downloaded and placed Capstone folder
 TODO
 * Filter the data from the Excel sheet 2 yrs all states -done
 * Tidy it and clean up unnecessary data -done
-* Plotting and visualisations using ggplot/tableau - started , try different types.
+* Plotting and visualisations using ggplot/tableau - Done some basic visualisations. File is present in the directory
 * Correlation analysis. We will be able able to figure out the relations between features / parameters -done, build a plot-pending
 * Bring out patterns in the data to identify relevance of the fields - started
 * Statistical model building on the data like regression analysis - Done
