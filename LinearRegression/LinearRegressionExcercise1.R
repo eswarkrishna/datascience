@@ -8,7 +8,7 @@
 ##     â¢ Run and interpret variety of regression models in R
 
 ## Set working directory
-setwd("C:\\Users\\esaluri\\Documents\\linear regression\\linear_regression\\linear_regression")
+## âââââââââââââââââââââââââ
 
 ##   It is often helpful to start your R session by setting your working
 ##   directory so you don't have to type the full path names to your data
@@ -19,23 +19,20 @@ setwd("C:\\Users\\esaluri\\Documents\\linear regression\\linear_regression\\line
 # setwd("C:/Users/dataclass/Desktop/Rstatistics")
 
 ##   You might also start by listing the files in your working directory
-
+setwd("C:\\Users\\neoistheone\\Documents\\SpringBoard\\LinearRegression\\linear_regression\\linear_regression")
 getwd() # where am I?
 list.files("dataSets") # files in the dataSets folder
 
 ## Load the states data
 ## ââââââââââââââââââââââââ
-library(foreign)
-states.dta <- read.dta("dataSets/states.dta")
+
 # read the states data
 states.data <- readRDS("dataSets/states.rds") 
 #get labels
 states.info <- data.frame(attributes(states.data)[c("names", "var.labels")])
 #look at last few labels
 tail(states.info, 8)
-str(states.data)
-head(states.data)
-head(states.dta)
+
 ## Linear regression
 ## âââââââââââââââââââ
 
@@ -49,27 +46,9 @@ sts.ex.sat <- subset(states.data, select = c("expense", "csat"))
 summary(sts.ex.sat)
 # correlation between expense and csat
 cor(sts.ex.sat)
-##### there is no multi collinearity issue
 
 ## Plot the data before fitting models
 ## âââââââââââââââââââââââââââââââââââââââ
-boxplot(states.data$pop)
-boxplot(states.data$area)
-boxplot(states.data$density)
-boxplot(states.data$waste) ## no issues
-boxplot(states.data$energy)
-boxplot(states.data$miles)
-boxplot(states.data$toxic) ## two outliers one on each side
-boxplot(states.data$green) 
-boxplot(states.data$house) ## no issues
-boxplot(states.data$senate) 
-boxplot(states.data$csat)
-boxplot(states.data$vsat)
-boxplot(states.data$msat)
-boxplot(states.data$percent)
-boxplot(states.data$expense)
-boxplot(states.data$income)
-
 
 ##   Plot the data to look for multivariate outliers, non-linear
 ##   relationships etc.
@@ -224,3 +203,7 @@ coef(summary(lm(csat ~ C(region, contr.helmert),
 
 ##   2. Try adding region to the model. Are there significant differences
 ##      across the four regions?
+
+mod.en.metro.by.waste <- lm(energy ~ metro * waste, data = states.data)
+mod.en.region <- lm(energy ~ metro * waste + region, data = states.data)
+anova(mod.en.region)
