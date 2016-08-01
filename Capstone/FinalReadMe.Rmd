@@ -1,5 +1,8 @@
 Final ReadMe
 ------------
+* Capstone project description is present in the link below
+https://github.com/eswarkrishna/datascience/blob/master/CapstoneProposal1.Rmd
+
 * Cleaned up the data in the files and aggregated the data and merged the data
 
    1. DRC_Raw_Data_13_14_1.csv	
@@ -8,6 +11,7 @@ Final ReadMe
    4. DRC_Raw_Data_13_14_4.csv	
 
     for the year 2013-14 with data for the year 2012-13
+	
    5. DRC_Raw_Data_12_13_1.csv	
    6. DRC_Raw_Data_12_13_2.csv	
    7. DRC_Raw_Data_12_13_3.csv	
