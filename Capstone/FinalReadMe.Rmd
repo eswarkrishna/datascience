@@ -1,33 +1,35 @@
 Final ReadMe
 ------------
-1) Cleaned up the data in the files and aggregated the data and merged the data 
-   1) DRC_Raw_Data_13_14_1.csv	
-   2) DRC_Raw_Data_13_14_2.csv	
-   3) DRC_Raw_Data_13_14_3.csv	
-   4) DRC_Raw_Data_13_14_4.csv	
+* Cleaned up the data in the files and aggregated the data and merged the data
+
+   1. DRC_Raw_Data_13_14_1.csv	
+   2. DRC_Raw_Data_13_14_2.csv	
+   3. DRC_Raw_Data_13_14_3.csv	
+   4. DRC_Raw_Data_13_14_4.csv	
+
     for the year 2013-14 with data for the year 2012-13
-   1) DRC_Raw_Data_12_13_1.csv	
-   2) DRC_Raw_Data_12_13_2.csv	
-   3) DRC_Raw_Data_12_13_3.csv	
-   4) DRC_Raw_Data_12_13_4.csv	
+   5. DRC_Raw_Data_12_13_1.csv	
+   6. DRC_Raw_Data_12_13_2.csv	
+   7. DRC_Raw_Data_12_13_3.csv	
+   8. DRC_Raw_Data_12_13_4.csv	
    
-2) The final Ouput for the above activity is present in the link below
+* The final Ouput for the above activity is present in the link below
  https://github.com/eswarkrishna/datascience/blob/master/Capstone/FinalCodeMD.pdf
  
-3) Did some data exploration using tableau.
+* Did some data exploration using tableau.
  https://github.com/eswarkrishna/datascience/blob/master/Capstone/Insights%20in%20Tableau.docx
  
-4) Data Description of the some finalised variables present in the file
+* Data Description of the some finalised variables present in the file
  
  https://github.com/eswarkrishna/datascience/blob/master/Capstone/DataDescription.html
  
-5) Built a Linear Regression Model using the final data obtained.
+* Built a Linear Regression Model using the final data obtained.
     a) Final data after wrangling is present in the file. 
 	https://github.com/eswarkrishna/datascience/blob/master/Capstone/final_data.csv
 	b) Regression Code for the final data is given in the link below
 	https://github.com/eswarkrishna/datascience/blob/master/Capstone/RegressionCode.R
 
-6) Output of the linear Regression Model which contains Correlation Matrix as well is given in the link below.
+* Output of the linear Regression Model which contains Correlation Matrix as well is given in the link below.
     https://github.com/eswarkrishna/datascience/blob/master/Capstone/Final_RegressionCode.html 
  Note :- Please download this file and view it as correlation Matrix is interactive one.
  
