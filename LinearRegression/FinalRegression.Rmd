@@ -1,0 +1,143 @@
+---
+output: word_document
+---
+```{r}
+library(caTools)
+library(lmtest)
+library(sandwich)
+library(plyr)
+library(car)
+library(leaps)
+```
+```{R}
+
+setwd("C:\\Users\\neoistheone\\Documents\\Statistical Analysis2\\MiniProject")
+
+finaldata = read.csv("Immigration.csv")
+```
+#Build a Basic Model to find out the relation between the Net Domestic #Immigration rate over the other fields like unemployment
+# Wage,Crime,Income,Poor,Taxes,Educ,BusFail
+```{R}
+model1 = lm(NDIR ~ Unemp+Wage+Crime+Income+Metrop+Poor+Taxes+Educ+BusFail+Temp+Region,
+            finaldata)
+summary(model1)
+```
+## Based on the results it seems there is no clear relation between the 
+# Response variable NDIR and other fields like #Wage,Crime,Income,Poor,Taxes,Educ,BusFail etc
+# So now we plot the density of the independent variables
+
+#Density plots to understand the data 
+# and their linearity
+```{R}
+plot(density(finaldata$NDIR))
+plot(density(finaldata$Unemp))
+plot(density(finaldata$Wage))
+plot(density(finaldata$Crime))
+plot(density(finaldata$Income))
+```
+
+# Applying transformations on the data
+# and checking the plots
+```{R}
+plot(density(log(finaldata$Metrop)^10))
+plot(density(log(finaldata$Poor)))
+plot(density(log(finaldata$Taxes)))
+plot(density(finaldata$Educ))
+plot(density(log(finaldata$BusFail)))
+plot(density(log(finaldata$Temp)))
+```
+
+
+#Applying transformations on actual data
+```{R}
+finaldata$Poor = log(finaldata$Poor)
+finaldata$Metrop = log(finaldata$Metrop)^10
+finaldata$Region = factor(finaldata$Region)
+finaldata$Taxes = log(finaldata$Taxes)
+finaldata$BusFail =  log(finaldata$BusFail)
+levels(finaldata$Region)
+finaldata1 <- finaldata
+finaldata1$State <- NULL
+finaldata1$Region <- NULL
+cor(finaldata1)
+```
+#Creating training and test set
+```{R}
+sample = sample.split(finaldata$NDIR, SplitRatio = .8)
+final_dataTrain = subset(finaldata, sample == TRUE)
+final_dataTest = subset(finaldata, sample == FALSE)
+
+```
+
+
+  
+## Based on the results it seems there is no clear relation between the 
+# Response variable NDIR and other fields like #Wage,Crime,Income,Poor,Taxes,Educ,BusFail etc
+#Recreate the model after transformations
+```{R}
+model2 = lm(NDIR ~ Unemp+Wage+Crime+Income+Metrop+Poor+Taxes+Educ+BusFail+Temp+Region,
+            final_dataTrain)
+summary(model2)
+```
+# Multicollinearity diagnostics using VIF
+#the variance inflation factor represents the proportion of variance in one predictor #explained by all the other predictors in the model. A VIF = 1 indicates no #collinearity, whereas increasingly higher values suggest increasing multicollinearity
+
+
+```{R}
+vif(model2)
+sqrt(vif(model2))>2
+```
+#After the analysis of the Variable Inflation Factors below fields are removed
+#Metrop,poor,taxes,Temp.
+#Now we create a new model after removing above fields.
+```{R}
+model3 = lm(NDIR ~ Unemp+Wage+Crime+Income+Educ+BusFail+Region,
+            final_dataTrain)
+summary(model3)
+
+leaps = regsubsets(NDIR ~ Unemp+Wage+Crime+Income+Educ+BusFail+Region,
+                   data = final_dataTrain,nbest=10)
+null=lm(NDIR~1, data=final_dataTrain)
+null
+full=lm(NDIR~Unemp+Wage+Crime+Income+Educ+BusFail+Region, data=final_dataTrain)
+full
+
+step(null, scope=list(lower=null, upper=full), direction="backward")
+
+model3 = lm(NDIR ~ Region + Unemp,
+            final_dataTrain)
+summary(model3)
+```
+#After applying the backward and forward and step wise selection models
+#we got a model NDIR ~ Region+Unemp as the better model
+```{R}
+plot(model3)
+```
+
+#Based on the plot of there is no heteroscedasticity as #the  plot is random and the redline is almost straight #line
+
+```{R}
+bp<- bptest(model3)
+bp
+```
+# Even after running the Breusth-pagan test. The P-value # of the greater than 0.05 which indicates #there is no Heteroscedasticity
+# Outliers are rows 4,10,26,45
+```{R}
+final_dataTrain <- final_dataTrain[-c(4,10,26,45)]
+model3 = lm(NDIR ~ Region + Unemp,
+            final_dataTrain)
+summary(model3)
+```
+
+
+
+```{R}
+y_hat <- predict.lm(model3,newdata = final_dataTest,se.fit = TRUE)$fit
+y_hat <- as.vector(y_hat)
+dev <- final_dataTest$NDIR
+num <- sum(dev^2)
+dev1 <- final_dataTest$NDIR- mean(final_dataTest$NDIR)
+den <- sum(dev1^2)
+predicted_rsqr <- 1- (num/den)
+predicted_rsqr
+```
