@@ -7,7 +7,7 @@ bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
 ui <- fluidPage(
   titlePanel("BC Liquor Store prices"),
   sidebarLayout(
-    sidebarPanel(
+    sidebarPanel(tags$a(href="https://madaboutdatain.wordpress.com","Back"),
       sliderInput("priceInput", "Price", 0, 100, c(25, 40), pre = "$"),
       radioButtons("typeInput", "Product type",
                    choices = c(unique(bcl$Type)),
