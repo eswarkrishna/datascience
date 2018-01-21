@@ -10,10 +10,10 @@ ui <- fluidPage(
     sidebarPanel(
       sliderInput("priceInput", "Price", 0, 100, c(25, 40), pre = "$"),
       radioButtons("typeInput", "Product type",
-                   choices = c("BEER", "REFRESHMENT", "SPIRITS", "WINE"),
+                   choices = c(unique(bcl$Type)),
                    selected = "WINE"),
       selectInput("countryInput", "Country",
-                  choices = c("CANADA", "FRANCE", "ITALY"))
+                  choices = c(unique(bcl$Country)))
     ),
     mainPanel(
       plotOutput("coolplot"),
