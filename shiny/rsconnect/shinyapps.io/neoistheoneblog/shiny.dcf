@@ -1,0 +1,12 @@
+name: shiny
+title: shiny
+username:
+account: neoistheoneblog
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 258868
+bundleId: 1185171
+url: https://neoistheoneblog.shinyapps.io/shiny/
+when: 1516517809.45306
+asMultiple: FALSE
+asStatic: FALSE
