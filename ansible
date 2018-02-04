@@ -1,0 +1,26 @@
+    1  pwd
+    2  sudo apt-get update
+    3  sudo apt-get install software-properties-common
+    4  sudo apt-add-repository ppa:ansible/ansible
+    5  sudo groupadd ansible
+    6  sudo useradd ansible
+    7  sudo -E apt-add-repository ppa:ansible/ansible
+    8  sudo apt-add-repository ppa:ansible/ansible
+    9  clear
+   10  sudo apt-get install --reinstall ca-certificates
+   11  sudo apt-get update
+   12  sudo apt-get install ansible
+   13  clear
+   14  sudo apt remove --purge ca-certificates
+   15  clear
+   16  sudo apt autoremove
+   17  sudo apt install ca-certificates
+   18  sudo apt install software-properties-common
+   19  clear
+   20  sudo apt-add-repository ppa:ansible/ansible
+   21  sudo apt-get update
+   22  sudo apt-get install ansible
+   23  clear
+   24  history
+   25  clear
+   26  history > history_ansible.txt
